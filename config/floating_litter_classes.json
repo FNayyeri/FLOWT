@@ -1,0 +1,127 @@
+[
+    {
+        "Material": "Soft Plastic / Hard Plastic / Cardboard / Paper / Thin Film Bag",
+        "Class": "Packaging",
+        "Description": "Colorful packaging materials with printed designs, brand names, or text. Examples include snack wrappers, chip bags, and printed paper food wrappers. Often lightweight and easily carried by water currents, they tend to float and spread widely in waterways."
+    },
+    {
+        "Material": "Aluminium / Soft Plastic / Hard Plastic / Cardboard / Thin Film Bag",
+        "Class": "Other_packaging",
+        "Description": "Unbranded or plain packaging with a smooth or shiny surface, often silver, white, or metallic. Examples include foil from chocolate bars, unmarked packaging film, or industrial wrapping. Typically lacks writing or colorful patterns."
+    },
+    {
+        "Material": "Soft Plastic",
+        "Class": "S_bubblewrap",
+        "Description": "Soft, transparent or translucent sheets with raised air pockets, commonly used for protecting fragile goods during shipping. Pieces may appear partially deflated and tangled in other debris."
+    },
+    {
+        "Material": "Soft Plastic",
+        "Class": "S_label",
+        "Description": "Thin, flat plastic labels from bottles or packages. They are often colorful, waterproof, and contain printed brand information. They can detach easily from containers and float separately."
+    },
+    {
+        "Material": "Soft Plastic",
+        "Class": "S_squeeze",
+        "Description": "Soft, flexible plastic bottles designed to dispense liquids like toothpaste, sauces, or lotions. They may be partially crushed and have caps still attached."
+    },
+    {
+        "Material": "Soft Plastic",
+        "Class": "S_straw",
+        "Description": "Thin cylindrical drinking straws, often single-use and lightweight. They can be whole or broken into smaller fragments, commonly found in waterways."
+    },
+    {
+        "Material": "Soft Plastic / Cardboard",
+        "Class": "PS_string",
+        "Description": "Includes fishing lines, synthetic ropes, or string. Often entangled with seaweed or other debris. Commonly used in fishing, boating, or packaging."
+    },
+    {
+        "Material": "Cardboard",
+        "Class": "P_cardboard",
+        "Description": "Crumpled, ripped, or soaked cardboard pieces from boxes or packaging. If colorful and branded, classify under Packaging. When plain or worn, stays in this category."
+    },
+    {
+        "Material": "Hard Plastic / Paper",
+        "Class": "P_foodcontainer",
+        "Description": "Rigid or semi-rigid containers used for takeaway meals or pre-packaged food. Includes lunch boxes, clamshell containers, or paper food trays."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "PH_cup",
+        "Description": "Hard plastic cups used for beverages, often stackable. Can be found whole or broken into sharp fragments."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "H_packaging",
+        "Description": "Jagged or irregularly shaped hard plastic fragments, such as broken parts of containers or casings. These can be dangerous to wildlife due to sharp edges."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "H_beveragebottle",
+        "Description": "Plastic drink bottles with smooth, rounded edges. Includes water bottles, soda bottles, and sports drink containers."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "H_otherbottle",
+        "Description": "Plastic bottles that are not for beverages, such as cleaning product containers, spray bottles, or buckets."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "H_plate/bowl",
+        "Description": "Large, round dishes made of hard plastic, such as picnic plates or mixing bowls."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "H_utensil",
+        "Description": "Plastic eating utensils like forks, spoons, and knives. Typically lightweight and found near food packaging debris."
+    },
+    {
+        "Material": "Hard Plastic",
+        "Class": "DH_lid",
+        "Description": "Small, round plastic lids from bottles, jars, or containers. These are among the most common littered items due to their small size."
+    },
+    {
+        "Material": "Polystyrene",
+        "Class": "D_polystyrene",
+        "Description": "Lightweight foam material used in food packaging, cups, and protective packaging. Breaks easily into small fragments that float extensively."
+    },
+    {
+        "Material": "Metal",
+        "Class": "M_beveragecan",
+        "Description": "Aluminium cans used for drinks such as soda or beer. Can be intact or crushed."
+    },
+    {
+        "Material": "Metal",
+        "Class": "M_foodcan/tin",
+        "Description": "Metal tins or cans used for food storage, like soup cans or tuna tins. May show signs of rusting when exposed to water."
+    },
+    {
+        "Material": "Metal",
+        "Class": "M_aerosol",
+        "Description": "Pressurized spray cans used for deodorants, insecticides, or cleaning sprays. Usually cylindrical with a plastic cap."
+    },
+    {
+        "Material": "Rubber",
+        "Class": "R_ball/balloon",
+        "Description": "Deflated or torn balloons, rubber balls, or similar rubber-based recreational items. May still have strings or ribbons attached."
+    },
+    {
+        "Material": "Glass",
+        "Class": "G_beveragebottle",
+        "Description": "Glass bottles used for beverages like beer or soda. Can be whole or broken into sharp fragments."
+    },
+    {
+        "Material": "Fabric",
+        "Class": "F_facemask",
+        "Description": "Disposable or reusable face masks made from fabric or mixed materials. Commonly found since the COVID-19 pandemic."
+    },
+    {
+        "Material": "Timber",
+        "Class": "T_wood/timber",
+        "Description": "Wooden fragments such as sticks, construction offcuts, or driftwood that originate from man-made sources."
+    },
+    {
+        "Material": "Any",
+        "Class": "Other",
+        "Description": "Any man-made object not specifically listed above. Examples include toys, electronics, or unusual items like shoes or clothing."
+    }
+]

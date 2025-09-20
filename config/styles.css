@@ -1,0 +1,72 @@
+/* FLOWT Application Styles */
+
+/* Bulk Action Buttons - Blue */
+.bulk-buttons .stButton > button {
+    white-space: nowrap !important;
+    background-color: #1f77b4 !important;
+    color: white !important;
+}
+
+/* Save Buttons - Red */
+.save-button .stButton > button,
+button[data-baseweb="button"]:has-text("💾 Save") {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* View/Close Buttons - White */
+.view-button .stButton > button,
+button[data-baseweb="button"]:has-text("🔍 View Large"),
+button[data-baseweb="button"]:has-text("❌ Close") {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    
+}
+
+/* Navigation Buttons */
+.nav-button .stButton > button {
+    width: 100px !important;
+}
+
+/* General Button Styling */
+.stButton > button {
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    opacity: 0.8;
+}
+
+/* Color Indicator Styling */
+.color-indicator {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+/* Status Icons */
+.status-pending { color: #ffc107; }
+.status-modified { color: #17a2b8; }
+.status-saved { color: #28a745; }
+
+/* Compact Layout */
+.detection-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Page Navigation */
+.page-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}

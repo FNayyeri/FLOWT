@@ -1,0 +1,117 @@
+app:
+  debug: false
+  name: FLOWT - Floating Litter Observation & Waste Tracking
+  version: 0.1.0
+curation:
+  auto_save: true
+  backup_interval: 100
+  items_per_page: 10
+data:
+  max_file_size_mb: 500
+  storage_path: data
+  video_formats:
+  - .mp4
+  - .avi
+  - .mov
+  - .mkv
+detection_classes:
+  color_hex:
+  - '#3498DB'
+  - '#2ECC71'
+  - '#E74C3C'
+  - '#F39C12'
+  - '#9B59B6'
+  - '#1ABC9C'
+  - '#E67E22'
+  - '#34495E'
+  - '#F1C40F'
+  - '#E91E63'
+  - '#8E44AD'
+  - '#16A085'
+  - '#D35400'
+  - '#2C3E50'
+  - '#C0392B'
+  - '#27AE60'
+  - '#2980B9'
+  - '#F4D03F'
+  - '#A569BD'
+  - '#17A2B8'
+  - '#FD7E14'
+  - '#6C757D'
+  - '#DC3545'
+  - '#28A745'
+  - '#007BFF'
+  names:
+  - Packaging
+  - Other_packaging
+  - S_bubblewrap
+  - S_label
+  - S_squeeze
+  - S_straw
+  - PS_string
+  - P_cardboard
+  - P_foodcontainer
+  - PH_cup
+  - H_packaging
+  - H_beveragebottle
+  - H_otherbottle
+  - H_plate/bowl
+  - H_utensil
+  - DH_lid
+  - D_polystyrene
+  - M_beveragecan
+  - M_foodcan/tin
+  - M_aerosol
+  - R_ball/balloon
+  - G_beveragebottle
+  - F_facemask
+  - T_wood/timber
+  - Other
+fine_tuning:
+  batch_size: 16
+  epochs: 20
+  frozen_layers: 9
+inference:
+  batch_size: 1
+  device: auto
+  max_frames: 10000
+models:
+  confidence_threshold: 0.5
+  default_model: yolov8n.pt
+  model_path: models
+  supported_formats:
+  - .pt
+  - .onnx
+styling:
+  bbox:
+    font_scale: 0.6
+    text_color:
+    - 255
+    - 255
+    - 255
+    text_thickness: 1
+    thickness: 4
+tags:
+  condition:
+  - floating
+  - submerged
+  - beached
+  degradation:
+  - intact
+  - degraded
+  - fragmented
+  size:
+  - small
+  - medium
+  - large
+tracking:
+  timelapse_video: true
+training:
+  default_batch_size: 16
+  default_epochs: 100
+  default_lr: 0.01
+  early_stopping_patience: 30
+video_generation:
+  bbox_color: '#0006ff'
+  bbox_thickness: 4
+  text_color: '#ffffff'
