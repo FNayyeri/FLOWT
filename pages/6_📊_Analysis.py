@@ -13,7 +13,7 @@ from src.sidebar_config import setup_sidebar
 setup_sidebar()
 
 st.markdown("""
-<style>
+<style>          
 /* Secondary buttons - red */
 button[kind="secondary"] {
     background-color: red !important;
@@ -26,7 +26,7 @@ button[kind="secondary"] {
 button[kind="primary"] {
     background-color: blue !important;
     color: white !important;
-    width: 200px !important;
+    width: 150px !important;
     border: none !important;
 }
 
@@ -41,6 +41,11 @@ button[kind="tertiary"] {
 .stButton > button {
     white-space: nowrap !important;
 }
+/* White background for all selectboxes */
+.stSelectbox > div > div {
+    background-color: white !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 st.title("📊 Analysis")
@@ -50,11 +55,11 @@ st.markdown("Statistical insights and performance metrics for marine litter dete
 # st.write(f"Debug - nav_video: {st.session_state.get('nav_video', 'Not set')}")
 
 # Navigation buttons
-col1, col2, col3 = st.columns([1, 6, 1])
-with col1:
+left_col, spacer_col, right_col = st.columns([0.1, 1, 0.1])
+with left_col:
     if st.button("◀ Previous", type="primary"):
         st.switch_page("pages/5_🎬_Video_Generation.py")
-with col3:
+with right_col:
     if st.button("Next ▶", type="primary"):
         st.switch_page("pages/7_🤖_Analysis_AI.py")
 st.markdown('<hr style="margin: 5px 0; border: 1px solid #ddd;">', unsafe_allow_html=True)
@@ -72,7 +77,7 @@ if curated_base_dir.exists():
     model_dirs = [d for d in curated_base_dir.iterdir() if d.is_dir()]
     
     if model_dirs:
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         
         with col1:
             # Use nav_model if available
@@ -120,11 +125,12 @@ if curated_base_dir.exists():
             )
 
             st.session_state.nav_video = selected_video
-        # Analysis type selection
-        analysis_type = st.radio(
-            "Analysis Type",
-            ["Tracking Analytics", "Detection Analytics"]
-        )
+        with col3:
+            # Analysis type selection
+            analysis_type = st.radio(
+                "Analysis Type",
+                ["Tracking Analytics", "Detection Analytics"]
+            )
         st.markdown('<hr style="margin: 5px 0; border: 1px solid #ddd;">', unsafe_allow_html=True)
         if analysis_type == "Detection Analytics":
             st.header("Detection Analytics")

@@ -12,7 +12,7 @@ from src.sidebar_config import setup_sidebar
 setup_sidebar()
 
 st.markdown("""
-<style>
+<style>         
 /* Secondary buttons - green */
 button[kind="secondary"] {
     background-color: green !important;
@@ -25,7 +25,7 @@ button[kind="secondary"] {
 button[kind="primary"] {
     background-color: blue !important;
     color: white !important;
-    width: 200px !important;
+    width: 150px !important;
     border: none !important;
 }
 
@@ -40,6 +40,10 @@ button[kind="tertiary"] {
 .stButton > button {
     white-space: nowrap !important;
 }
+/* White background for all selectboxes */
+.stSelectbox > div > div {
+    background-color: white !important;
+}
 </style>
 """, unsafe_allow_html=True)
 st.title("🎬 Video Generation")
@@ -49,11 +53,11 @@ st.markdown("Generate new videos with corrected detections replacing original on
 # st.write(f"Debug - nav_video: {st.session_state.get('nav_video', 'Not set')}")
 
 # Navigation buttons
-col1, col2, col3 = st.columns([1, 6, 1])
-with col1:
+left_col, spacer_col, right_col = st.columns([0.1, 1, 0.1])
+with left_col:
     if st.button("◀ Previous", type="primary"):
         st.switch_page("pages/4_🎯_Tracking.py")
-with col3:
+with right_col:
     if st.button("Next ▶", type="primary"):
         st.switch_page("pages/6_📊_Analysis.py")
 st.markdown('<hr style="margin: 5px 0; border: 1px solid #ddd;">', unsafe_allow_html=True)

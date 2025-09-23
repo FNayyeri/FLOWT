@@ -2,6 +2,41 @@ import streamlit as st
 from pathlib import Path
 st.markdown("""
 <style>
+/* Classic Sidebar Styling */
+.css-1d391kg {
+    background-color: #f8f9fa !important;
+    border-right: 2px solid #dee2e6 !important;
+}
+
+/* Sidebar header */
+.css-1d391kg .css-1v0mbdj {
+    background-color: #343a40 !important;
+    color: white !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 0.5rem !important;
+}
+
+/* Navigation links styling */
+.css-1d391kg .stSelectbox > div > div {
+    background-color: white !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.375rem !important;
+}
+
+/* Sidebar text */
+.css-1d391kg .markdown-text-container {
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* Navigation section headers */
+.css-1d391kg h3 {
+    color: #343a40 !important;
+    border-bottom: 2px solid #007bff !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1rem !important;
+}
 
 /* Primary buttons (Navigation) - blue */
 button[kind="primary"] {
@@ -10,6 +45,20 @@ button[kind="primary"] {
     width: 200px !important;
     border: none !important;
 }
+
+/* Sidebar navigation items */
+.css-1d391kg .stRadio > div {
+    background-color: white !important;
+    padding: 0.5rem !important;
+    border-radius: 0.375rem !important;
+    margin-bottom: 0.5rem !important;
+    border: 1px solid #e9ecef !important;
+}
+
+.css-1d391kg .stRadio > div:hover {
+    background-color: #e9ecef !important;
+    border-color: #007bff !important;
+}
 </style>
 """, unsafe_allow_html=True)
 # Configure page
@@ -17,30 +66,62 @@ st.set_page_config(
     page_title="Flowt pipeline",
     page_icon="🌊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/FNayyeri/flowt-pipeline',
+        'Report a bug': 'https://github.com/FNayyeri/flowt-pipeline/issues',
+        'About': 'FLOWT Pipeline - Marine Litter Detection System'
+    }
 )
 
 # Main page
-st.title("🌊 FLOWT - Floating Litter Observation & Waste Tracking")
-st.markdown("### Marine Litter Detection Pipeline")
-
+st.title("🌊 Welcome to FLOWT Pipeline")
 st.markdown("""
-Welcome to FLOWT, a comprehensive pipeline for floating litter detection using YOLO models.
+            **Floating Litter Observation & Waste Tracking** 
+            is an AI-powered pipeline for marine debris detection and environmental monitoring.
+            """)
 
-**Pipeline Components:**
-- 📁 **Data Ingestion** - Upload and manage video datasets
-- 🔍 **Inference** - YOLO-based trash detection
-- ✏️ **Curation** - Review and correct detections
-- 👁️ **Tracking** - Assign Tracking ID to unique detected trash 
-- 🎬 **Video Generation** - Generate corrected videos
-- 📊 **Analysis** - Statistical insights and metrics
-- 🤖 **AI-Powered Analysis** - Using LLM for insights and metrics analysis
-- 🎯 **Fine-tuning** - Retrain models with curated data
+col1, col2 = st.columns(2)
+with col1:
 
-Use the sidebar to navigate between different components of the pipeline.
-""")
+    st.markdown("""
+                ---
+                **Pipeline Components:**
+                - 📁 **Data Ingestion** - Upload videos
+                - 🔍 **Inference** - Detect litter
+                - ✏️ **Curation** - Review results
+                - 👁️ **Tracking** - Track trash objects 
+                - 🎬 **Video Generation** - Create output
+                - 📊 **Analysis** - View metrics
+                - 🤖 **AI-Powered Analysis** - Get insights
+                - 🎯 **Fine-tuning** - Improve models
+                            
+                ---
+                            
 
-# Setup shared sidebar
+                **Navigation:**
+                            
+                - Select a component from the pages above to get started.
+                ---
+
+    """)
+    # st.sidebar.title("Navigation")
+    # st.sidebar.markdown("Select a component from the pages above to get started.")
+with col2:
+    col1, col2 = st.columns(2)
+    try:
+        with col1:
+            st.image("config/img/frame_0.jpg", width='stretch')
+            st.image("config/img/frame_6.jpg", width='stretch')
+        with col2:
+            st.image("config/img/frame_20.jpg", width='stretch')
+            st.image("config/img/frame_25.jpg", width='stretch')
+            
+    except:
+        pass
+    
+
+# Setup shared sidebar with classic styling
 from src.sidebar_config import setup_sidebar
 setup_sidebar()
 
@@ -79,3 +160,28 @@ with col3:
     st.metric("Videos Processed", video_count)
 with col4:
     st.metric("Detections Curated", curated_count)
+
+st.markdown("---")
+# Quick start guide
+st.markdown("### 🚀 Quick Start Guide")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("""
+    **Step 1-3: Data & Detection**
+    - Upload videos
+    - Run YOLO inference  
+    - Curate detections
+    """)
+with col2:
+    st.markdown("""
+    **Step 4-6: Processing**
+    - Track objects
+    - Generate videos
+    - Analyze results
+    """)
+with col3:
+    st.markdown("""
+    **Step 7-8: Intelligence**
+    - AI-powered insights
+    - Model fine-tuning
+    """)

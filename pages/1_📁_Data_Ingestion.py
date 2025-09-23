@@ -10,9 +10,11 @@ st.set_page_config(page_title="Data Ingestion", page_icon="📁")
 # Setup shared sidebar
 from src.sidebar_config import setup_sidebar
 setup_sidebar()
-
+# .stApp {
+#         background-color: #F5FAFF;  /* very light blue */
+#     }  
 st.markdown("""
-<style>
+<style>                  
 /* Secondary buttons - red */
 button[kind="secondary"] {
     background-color: red !important;
@@ -20,15 +22,13 @@ button[kind="secondary"] {
     width: 150px !important;
     border: none !important;
 }
-
 /* Primary buttons (Navigation) - blue */
 button[kind="primary"] {
     background-color: blue !important;
     color: white !important;
-    width: 200px !important;
+    width: 150px !important;
     border: none !important;
 }
-
 /* Tertiary buttons - white */
 button[kind="tertiary"] {
     background-color: white !important;
@@ -36,48 +36,83 @@ button[kind="tertiary"] {
     width: 100px !important;
     border: none !important;
 }
-
 .stButton > button {
     white-space: nowrap !important;
+}
+
+/* White background for all selectboxes */
+.stSelectbox > div > div {
+    background-color: white !important;
 }
 </style>
 """, unsafe_allow_html=True)
 st.title("📁 Data Ingestion")
-st.markdown("Upload and manage your video datasets for marine litter detection.")
-# Navigation buttons
-col1, col2, col3 = st.columns([1, 6, 1])
+st.markdown("Upload and manage your video and image datasets for marine litter detection.")
+# Navigation buttons in gray row
 
-with col3:
-    if st.button("Next ▶", type="primary"):
-        st.switch_page("pages/3_✏️_Curation.py")
+left_col, spacer_col, right_col = st.columns([0.1, 1, 0.1])
+with right_col:
+    if st.button("Next ▶", key="nav_next", type="primary"):
+        st.switch_page("pages/2_🔍_Inference.py")
 st.markdown('<hr style="margin: 5px 0; border: 1px solid #ddd;">', unsafe_allow_html=True)
 # File upload section
-st.header("Upload Videos")
-uploaded_files = st.file_uploader(
-    "Choose video files",
-    type=['mp4', 'avi', 'mov', 'mkv', 'tls'],
-    accept_multiple_files=True
-)
+st.header("Upload Media Files")
+
+# Tabs for different upload types
+tab1, tab2 = st.tabs(["📹 Videos", "🖼️ Images"])
+
+with tab1:
+    uploaded_videos = st.file_uploader(
+        "Choose video files",
+        type=['mp4', 'avi', 'mov', 'mkv', 'tls'],
+        accept_multiple_files=True,
+        key="video_uploader"
+    )
+
+with tab2:
+    uploaded_images = st.file_uploader(
+        "Choose image files",
+        type=['jpg', 'jpeg', 'png', 'bmp', 'tiff'],
+        accept_multiple_files=True,
+        key="image_uploader"
+    )
+
+uploaded_files = (uploaded_videos or []) + (uploaded_images or [])
 
 if uploaded_files:
-    st.success(f"Uploaded {len(uploaded_files)} video(s)")
+    video_count = len(uploaded_videos or [])
+    image_count = len(uploaded_images or [])
+    if video_count and image_count:
+        st.success(f"Uploaded {video_count} video(s) and {image_count} image(s)")
+    elif video_count:
+        st.success(f"Uploaded {video_count} video(s)")
+    else:
+        st.success(f"Uploaded {image_count} image(s)")
     
-    # Create data directory if it doesn't exist
-    data_dir = Path("data/videos")
-    data_dir.mkdir(parents=True, exist_ok=True)
+    # Create data directories if they don't exist
+    videos_dir = Path("data/videos")
+    images_dir = Path("data/images")
+    videos_dir.mkdir(parents=True, exist_ok=True)
+    images_dir.mkdir(parents=True, exist_ok=True)
     
     # Save uploaded files and extract metadata
     metadata_dir = Path("data/metadata")
     metadata_dir.mkdir(parents=True, exist_ok=True)
     
     for uploaded_file in uploaded_files:
+        # Determine if it's an image or video
+        file_ext = Path(uploaded_file.name).suffix.lower()
+        is_image = file_ext in ['.jpg', '.jpeg', '.png', '.bmp', '.tiff']
+        
+        # Save to appropriate directory
+        data_dir = images_dir if is_image else videos_dir
         original_file_path = data_dir / uploaded_file.name
         with open(original_file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         
-        # Convert to MP4 if not already MP4
+        # Convert videos to MP4 if not already MP4 (keep images as-is)
         file_ext = original_file_path.suffix.lower()
-        if file_ext != '.mp4':
+        if not is_image and file_ext != '.mp4':
             mp4_file_path = data_dir / f"{original_file_path.stem}.mp4"
             
             # Convert using OpenCV
@@ -105,108 +140,144 @@ if uploaded_files:
         else:
             file_path = original_file_path
         
-        # Extract video metadata
+        # Extract metadata (video or image)
         try:
-            cap = cv2.VideoCapture(str(file_path))
-            
-            # Get video properties
-            fps = cap.get(cv2.CAP_PROP_FPS)
-            frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-            width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            duration = frame_count / fps if fps > 0 else 0
-            
-            # Get file info
-            file_size = file_path.stat().st_size
-            file_ext = file_path.suffix.lower()
-            creation_time = datetime.fromtimestamp(file_path.stat().st_ctime)
-            
-            # Create metadata dictionary
-            metadata = {
-                "filename": file_path.name,
-                "original_filename": uploaded_file.name,
-                "file_size_bytes": file_size,
-                "file_size_mb": round(file_size / (1024*1024), 2),
-                "file_type": ".mp4",
-                "original_format": file_ext,
-                "duration_seconds": round(duration, 2),
-                "duration_formatted": f"{int(duration//60):02d}:{int(duration%60):02d}",
-                "fps": round(fps, 2),
-                "frame_count": frame_count,
-                "resolution": f"{width}x{height}",
-                "width": width,
-                "height": height,
-                "creation_time": creation_time.isoformat(),
-                "ingestion_time": datetime.now().isoformat(),
-                "scenario": "marine_litter_detection",
-                "format_details": {
-                    "codec": "unknown",  # OpenCV doesn't easily provide codec info
-                    "bitrate": "unknown"
+            if is_image:
+                # Image metadata
+                import cv2
+                img = cv2.imread(str(file_path))
+                height, width = img.shape[:2]
+                file_size = file_path.stat().st_size
+                creation_time = datetime.fromtimestamp(file_path.stat().st_ctime)
+                
+                metadata = {
+                    "filename": file_path.name,
+                    "original_filename": uploaded_file.name,
+                    "file_size_bytes": file_size,
+                    "file_size_mb": round(file_size / (1024*1024), 2),
+                    "file_type": file_ext,
+                    "media_type": "image",
+                    "resolution": f"{width}x{height}",
+                    "width": width,
+                    "height": height,
+                    "creation_time": creation_time.isoformat(),
+                    "ingestion_time": datetime.now().isoformat(),
+                    "scenario": "marine_litter_detection"
                 }
-            }
+                
+                st.write(f"✅ Saved: {file_path.name} ({metadata['resolution']})")
+            else:
+                # Video metadata
+                cap = cv2.VideoCapture(str(file_path))
             
-            cap.release()
+                # Get video properties
+                fps = cap.get(cv2.CAP_PROP_FPS)
+                frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                duration = frame_count / fps if fps > 0 else 0
+                
+                # Get file info
+                file_size = file_path.stat().st_size
+                creation_time = datetime.fromtimestamp(file_path.stat().st_ctime)
+                
+                # Create metadata dictionary
+                metadata = {
+                    "filename": file_path.name,
+                    "original_filename": uploaded_file.name,
+                    "file_size_bytes": file_size,
+                    "file_size_mb": round(file_size / (1024*1024), 2),
+                    "file_type": ".mp4",
+                    "original_format": file_ext,
+                    "media_type": "video",
+                    "duration_seconds": round(duration, 2),
+                    "duration_formatted": f"{int(duration//60):02d}:{int(duration%60):02d}",
+                    "fps": round(fps, 2),
+                    "frame_count": frame_count,
+                    "resolution": f"{width}x{height}",
+                    "width": width,
+                    "height": height,
+                    "creation_time": creation_time.isoformat(),
+                    "ingestion_time": datetime.now().isoformat(),
+                    "scenario": "marine_litter_detection",
+                    "format_details": {
+                        "codec": "unknown",
+                        "bitrate": "unknown"
+                    }
+                }
+                
+                cap.release()
+                st.write(f"✅ Saved: {file_path.name} ({metadata['duration_formatted']}, {metadata['resolution']})")
             
             # Save metadata to JSON file
             metadata_file = metadata_dir / f"{file_path.stem}_metadata.json"
             with open(metadata_file, 'w') as f:
                 json.dump(metadata, f, indent=2)
             
-            st.write(f"✅ Saved: {file_path.name} ({metadata['duration_formatted']}, {metadata['resolution']})")
-            
         except Exception as e:
             st.write(f"✅ Saved: {file_path.name} (metadata extraction failed: {str(e)})")
 st.markdown('<hr style="margin: 5px 0; border: 1px solid #ddd;">', unsafe_allow_html=True)
-# Display existing videos with metadata
-st.header("Existing Videos")
-data_dir = Path("data/videos")
+# Display existing media files with metadata
+st.header("Existing Media Files")
+videos_dir = Path("data/videos")
+images_dir = Path("data/images")
 metadata_dir = Path("data/metadata")
 
-if data_dir.exists():
-    video_files = list(data_dir.glob("*.mp4")) + list(data_dir.glob("*.avi")) + list(data_dir.glob("*.mov")) + list(data_dir.glob("*.mkv")) + list(data_dir.glob("*.tls"))
-    video_files.sort(key=lambda x: x.name.lower())
+# Combine videos and images
+media_files = []
+if videos_dir.exists():
+    video_files = list(videos_dir.glob("*.mp4")) + list(videos_dir.glob("*.avi")) + list(videos_dir.glob("*.mov")) + list(videos_dir.glob("*.mkv")) + list(videos_dir.glob("*.tls"))
+    media_files.extend(video_files)
+if images_dir.exists():
+    image_files = list(images_dir.glob("*.jpg")) + list(images_dir.glob("*.jpeg")) + list(images_dir.glob("*.png")) + list(images_dir.glob("*.bmp")) + list(images_dir.glob("*.tiff"))
+    media_files.extend(image_files)
+
+media_files.sort(key=lambda x: x.name.lower())
     
-    if video_files:
-        for video_file in video_files:
-            col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
-            
-            # Load metadata if available
-            metadata_file = metadata_dir / f"{video_file.stem}_metadata.json"
-            metadata = None
-            if metadata_file.exists():
-                try:
-                    with open(metadata_file, 'r') as f:
-                        metadata = json.load(f)
-                except:
-                    pass
-            
-            with col1:
-                if metadata:
-                    st.write(f"📹 {video_file.name}")
+if media_files:
+    for media_file in media_files:
+        col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
+        
+        # Load metadata if available
+        metadata_file = metadata_dir / f"{media_file.stem}_metadata.json"
+        metadata = None
+        if metadata_file.exists():
+            try:
+                with open(metadata_file, 'r') as f:
+                    metadata = json.load(f)
+            except:
+                pass
+        
+        with col1:
+            if metadata:
+                icon = "📹" if metadata.get('media_type') == 'video' else "🖼️"
+                st.write(f"{icon} {media_file.name}")
+                if metadata.get('media_type') == 'video':
                     st.caption(f"{metadata['resolution']} • {metadata['duration_formatted']}")
                 else:
-                    st.write(f"📹 {video_file.name}")
-            
-            with col2:
-                if metadata:
-                    st.write(f"{metadata['file_size_mb']} MB")
-                else:
-                    file_size = video_file.stat().st_size / (1024*1024)
-                    st.write(f"{file_size:.1f} MB")
-            
-            with col3:
-                if metadata:
-                    with st.expander("📊 Info"):
-                        st.json(metadata)
-            
-            with col4:
-                if st.button("🗑️ Delete", key=f"del_{video_file.name}", type="tertiary"):
-                    video_file.unlink()
-                    # Also delete metadata file
-                    if metadata_file.exists():
-                        metadata_file.unlink()
-                    st.rerun()
-    else:
-        st.info("No videos uploaded yet. Use the upload section above to add videos.")
+                    st.caption(f"{metadata['resolution']}")
+            else:
+                icon = "📹" if media_file.suffix.lower() in ['.mp4', '.avi', '.mov', '.mkv', '.tls'] else "🖼️"
+                st.write(f"{icon} {media_file.name}")
+        
+        with col2:
+            if metadata:
+                st.write(f"{metadata['file_size_mb']} MB")
+            else:
+                file_size = media_file.stat().st_size / (1024*1024)
+                st.write(f"{file_size:.1f} MB")
+        
+        with col3:
+            if metadata:
+                with st.expander("📊 Info"):
+                    st.json(metadata)
+        
+        with col4:
+            if st.button("🗑️ Delete", key=f"del_{media_file.name}", type="tertiary"):
+                media_file.unlink()
+                # Also delete metadata file
+                if metadata_file.exists():
+                    metadata_file.unlink()
+                st.rerun()
 else:
-    st.info("No videos uploaded yet. Use the upload section above to add videos.")
+    st.info("No media files uploaded yet. Use the upload section above to add videos or images.")

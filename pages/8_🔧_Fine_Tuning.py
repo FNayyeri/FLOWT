@@ -18,7 +18,7 @@ from src.sidebar_config import setup_sidebar
 setup_sidebar()
 
 st.markdown("""
-<style>
+<style>         
 button[kind="secondary"] {
     background-color: green !important;
     color: white !important;
@@ -28,7 +28,7 @@ button[kind="secondary"] {
 button[kind="primary"] {
     background-color: blue !important;
     color: white !important;
-    width: 200px !important;
+    width: 150px !important;
     border: none !important;
 }
 button[kind="tertiary"] {
@@ -40,6 +40,10 @@ button[kind="tertiary"] {
 .stButton > button {
     white-space: nowrap !important;
 }
+/* White background for all selectboxes */
+.stSelectbox > div > div {
+    background-color: white !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -47,11 +51,11 @@ st.title("🔧 Fine Tuning")
 st.markdown("Fine-tune baseline models using curated detection data.")
 
 # Navigation buttons
-col1, col2, col3 = st.columns([1, 6, 1])
-with col1:
+left_col, spacer_col, right_col = st.columns([0.1, 1, 0.1])
+with left_col:
     if st.button("◀ Previous", type="primary"):
         st.switch_page("pages/7_🤖_Analysis_AI.py")
-with col3:
+with right_col:
     if st.button("Next ▶", type="primary"):
         st.switch_page("pages/1_📁_Data_Ingestion.py")
 
@@ -314,14 +318,15 @@ if curated_base_dir.exists() and models_dir.exists():
                     
                     # Create dataset.yaml
                     dataset_yaml = dataset_dir / "dataset.yaml"
+                    yaml_content = {
+                        'path': str(dataset_dir.absolute()),
+                        'train': 'images',
+                        'val': 'images',
+                        'nc': len(class_names),
+                        'names': class_names
+                    }
                     with open(dataset_yaml, 'w') as f:
-                        f.write(f"""path: {dataset_dir.absolute()}
-                                train: images
-                                val: images
-
-                                nc: {len(class_names)}
-                                names: {class_names}
-                                """)
+                        yaml.dump(yaml_content, f, default_flow_style=False)
                     
                     progress_bar.progress(1.0)
                     status_text.text("Dataset creation completed!")
