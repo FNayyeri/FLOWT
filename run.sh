@@ -15,8 +15,9 @@ fi
 source venv/bin/activate
 
 # Install requirements
+pip install --upgrade pip
 echo "Installing requirements..."
-pip install -r requirements.txt
+pip install --no-cache-dir -r requirements.txt
 
 # Create necessary directories
 echo "Setting up directories..."
