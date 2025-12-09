@@ -72,7 +72,7 @@ FLOWT/
 └── models_ft/                # Refined model versions
 ```
 
-### Setup
+## Setup
 ```bash
 # Clone the repository
 git clone https://github.com/FNayyeri/FLOWT.git
