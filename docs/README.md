@@ -78,13 +78,13 @@ FLOWT/
 ```
 
 ---
-## How to Run
-```
+### Setup
+```bash
 # Clone the repository
 git clone https://github.com/FNayyeri/FLOWT.git
 cd FLOWT
 
-# run the bash script
+# Run the application
 ./flowt.sh
 ```
 
