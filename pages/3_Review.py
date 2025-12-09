@@ -149,7 +149,7 @@ if results_dir.exists():
             model_results_dir = results_dir / selected_model
             result_files = list(model_results_dir.glob("*.json"))
         else:
-            st.warning("No models found. Please run inference first.")
+            st.warning("No scanning results found. Please run inference first.")
             
     with col2:
         if result_files:
@@ -218,8 +218,8 @@ if results_dir.exists():
                     selected_result = selected_video + '_detections'
             else:
                 selected_result = None
-        else:
-            st.warning("No models found. Please run inference first.")
+        # else:
+        #     st.warning("No scanning results found. Please run inference first.")
     
     with col3:
         if result_files and selected_result and selected_video:
