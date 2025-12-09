@@ -78,14 +78,15 @@ FLOWT/
 ```
 
 ---
+## How to Run
+```
+# Clone the repository
+git clone https://github.com/FNayyeri/FLOWT.git
+cd FLOWT
 
-## Best Practices
-- **Bulk curation operations** are scoped to the current page to avoid accidental dataset-wide changes.
-- Always check overwrite warnings before running inference again.
-- Keep `requirements.txt` updated when adding dependencies.
-- Use unique keys for all Streamlit interactive elements to avoid conflicts.
-
----
+# run the bash script
+./flowt.sh
+```
 
 ## Tech Stack
 - **Frontend**: Streamlit
