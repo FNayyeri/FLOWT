@@ -2,6 +2,8 @@ import streamlit as st
 from typing import Optional
 
 try:
+<<<<<<< HEAD
+=======
     import google.generativeai as genai
     GENAI_AVAILABLE = True
 except ImportError:
@@ -9,6 +11,7 @@ except ImportError:
     genai = None
 
 try:
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     import openai
     OPENAI_AVAILABLE = True
 except ImportError:
@@ -17,6 +20,27 @@ except ImportError:
 
 class GenAIService:
     def __init__(self):
+<<<<<<< HEAD
+        self.openai_client = None
+        self.provider_info = {
+            'OpenAI': {
+                'model_name': 'gpt-3.5-turbo',
+                'model_name_help': "A powerful GPT-3.5 model, suitable for complex conversational tasks and fast responses.",
+                'max_tokens': 4096,
+                'cost_per_1k': 0.5,
+                'rate_limit': 3
+            }
+        }
+        self.provider_helps ={
+            'max_tokens': "Maximum tokens (input + output) that the model can process in a single request.",
+            'cost_per_1k': "Cost per 1,000 tokens for the model usage.",
+            'rate_limit': "Maximum requests per minute allowed for the model."
+        }
+        self._initialize_models()
+    
+    def _initialize_models(self):
+        """Initialize OpenAI client with API key"""
+=======
         self.genai_model = None
         self.openai_client = None
         self._initialize_models()
@@ -40,6 +64,7 @@ class GenAIService:
                 self.genai_model = None
         
         # Initialize OpenAI
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
         if OPENAI_AVAILABLE:
             try:
                 api_key = st.session_state.get("openai_api_key")
@@ -54,6 +79,15 @@ class GenAIService:
             except Exception:
                 self.openai_client = None
     
+<<<<<<< HEAD
+    def generate_analysis(self, prompt: str, provider: str = "OpenAI") -> Optional[str]:
+        """Generate analysis using OpenAI"""
+        if not self.openai_client:
+            return None
+        try:
+            response = self.openai_client.chat.completions.create(
+                model=self.provider_info['OpenAI'].get('model_name'),
+=======
     def generate_analysis(self, prompt: str, provider: str = "google") -> Optional[str]:
         """Generate analysis using specified AI provider"""
         if provider == "google":
@@ -82,6 +116,7 @@ class GenAIService:
         try:
             response = self.openai_client.chat.completions.create(
                 model="gpt-3.5-turbo",
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=2000
             )
@@ -90,9 +125,12 @@ class GenAIService:
             st.error(f"Error with OpenAI: {str(e)}")
             return None
     
+<<<<<<< HEAD
+=======
     def is_genai_configured(self) -> bool:
         """Check if Google GenAI is configured"""
         return self.genai_model is not None
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     
     def is_openai_configured(self) -> bool:
         """Check if OpenAI is configured"""
@@ -101,8 +139,23 @@ class GenAIService:
     def get_available_providers(self) -> list:
         """Get list of available AI providers"""
         providers = []
+<<<<<<< HEAD
+        if self.is_openai_configured():
+            providers.append("OpenAI")
+        return providers
+    
+    def get_provider_info(self, provider: str) -> dict:
+        """Get provider information including model specs"""
+        return self.provider_info.get(provider, {})
+    def get_provider_helps(self, provider: str) -> dict:
+        """Get provider information including model specs"""
+        return self.provider_helps
+
+genai_service = GenAIService()
+=======
         if self.is_genai_configured():
             providers.append("google")
         if self.is_openai_configured():
             providers.append("openai")
         return providers
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9

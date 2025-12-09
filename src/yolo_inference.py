@@ -43,8 +43,21 @@ class YOLOInference:
             if not ret:
                 break
             
+<<<<<<< HEAD
+            # Run inference with lower confidence for fine-tuned models
+            inference_conf = confidence_threshold
+            if "ft" in model_path.lower() or "fine" in model_path.lower():
+                inference_conf = max(0.1, confidence_threshold * 0.5)  # Lower threshold for fine-tuned models
+            
+            results = self.model(frame, conf=inference_conf)
+            
+            # Debug: Print detection info for first few frames
+            if frame_count < 5:
+                print(f"Frame {frame_count}: Using conf={inference_conf}, Found {len(results[0].boxes) if results[0].boxes is not None else 0} detections")
+=======
             # Run inference
             results = self.model(frame, conf=confidence_threshold)
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
             
             # Process results and save frames with detections
             frame_has_detections = False

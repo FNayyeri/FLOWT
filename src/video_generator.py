@@ -15,7 +15,11 @@ class VideoGenerator:
         with open(curated_file, 'r') as f:
             return json.load(f)
     
+<<<<<<< HEAD
+    def draw_options(self, frame, detection, options):
+=======
     def draw_detection(self, frame, detection, options):
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
         """Draw detection on frame"""
         if not detection.get('is_true_positive', False):
             return frame
@@ -34,13 +38,25 @@ class VideoGenerator:
         if options.get('show_bboxes', True):
             cv2.rectangle(frame, (x1, y1), (x2, y2), color_bgr, thickness)
         
+<<<<<<< HEAD
+        # Draw label, confidence, and track ID
+=======
         # Draw label and confidence
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
         if options.get('show_labels', True) or options.get('show_confidence', True):
             label_parts = []
             
             if options.get('show_labels', True):
                 class_name = detection.get('corrected_class', detection.get('class', 'Unknown'))
+<<<<<<< HEAD
+                track_id = detection.get('track_id')
+                if track_id is not None:
+                    label_parts.append(f"{class_name} ID:{track_id}")
+                else:
+                    label_parts.append(class_name)
+=======
                 label_parts.append(class_name)
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
             
             if options.get('show_confidence', True):
                 confidence = detection.get('confidence', 0)
@@ -50,7 +66,11 @@ class VideoGenerator:
             
             # Calculate text size
             font = cv2.FONT_HERSHEY_SIMPLEX
+<<<<<<< HEAD
+            font_scale = options.get('font_size', 0.6)
+=======
             font_scale = 0.6
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
             text_thickness = 1
             (text_width, text_height), _ = cv2.getTextSize(label, font, font_scale, text_thickness)
             
@@ -66,7 +86,11 @@ class VideoGenerator:
         
         return frame
     
+<<<<<<< HEAD
+    def generate_video(self, video_path, tracking_data_path, output_name, output_format, options, model_name=None):
+=======
     def generate_video_from_tracking(self, video_path, tracking_data_path, output_name, output_format, options, model_name=None):
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
         """Generate video from tracking data with track IDs"""
         import json
         
@@ -111,6 +135,22 @@ class VideoGenerator:
             if not ret:
                 break
             
+<<<<<<< HEAD
+            # Draw tracked objects for current frame using draw_options
+            if frame_count in detections_by_frame:
+                for obj in detections_by_frame[frame_count]:
+                    # Convert tracking object to detection format
+                    detection = {
+                        'bbox': obj['bbox'],
+                        'class': obj.get('class', 'Unknown'),
+                        'corrected_class': obj.get('class', 'Unknown'),
+                        'confidence': obj.get('confidence', 0),
+                        'is_true_positive': True,
+                        'track_id': obj.get('track_id')
+                    }
+                    
+                    frame = self.draw_options(frame, detection, options)
+=======
             # Draw tracked objects for current frame with track IDs
             if frame_count in detections_by_frame:
                 for obj in detections_by_frame[frame_count]:
@@ -147,6 +187,7 @@ class VideoGenerator:
                             frame, bbox, display_class, display_confidence, 
                             display_track_id, show_any_label, thickness, text_color, custom_color
                         )
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
             
             # Write frame
             out.write(frame)
@@ -157,6 +198,9 @@ class VideoGenerator:
         out.release()
         
         return output_path
+<<<<<<< HEAD
+    
+=======
     
     def generate_video(self, video_path, curated_data_path, output_name, output_format, options, model_name=None):
         """Generate video with corrected detections"""
@@ -256,3 +300,4 @@ class VideoGenerator:
         out.release()
         
         return output_path
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9

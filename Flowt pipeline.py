@@ -81,15 +81,24 @@ st.markdown("""
             is an AI-powered pipeline for marine debris detection and environmental monitoring.
             """)
 
+<<<<<<< HEAD
+col1, col2, col3,  = st.columns([1,1.2,2])
+with col1:
+=======
 col1, col2 = st.columns(2)
 with col1:
 
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     st.markdown("""
                 ---
                 **Pipeline Components:**
                 - 📁 **Data Ingestion** - Upload videos
                 - 🔍 **Inference** - Detect litter
+<<<<<<< HEAD
+                - ✏️ **Review** - Review detections
+=======
                 - ✏️ **Curation** - Review results
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
                 - 👁️ **Tracking** - Track trash objects 
                 - 🎬 **Video Generation** - Create output
                 - 📊 **Analysis** - View metrics
@@ -107,7 +116,18 @@ with col1:
     """)
     # st.sidebar.title("Navigation")
     # st.sidebar.markdown("Select a component from the pages above to get started.")
+<<<<<<< HEAD
+# with col2:
+#     # Pipeline Flowchart
+#     # st.markdown("### 🔄 Pipeline Workflow")
+#     try:
+#         st.image("config/Flowchart.png", caption="FLOWT Pipeline Workflow", width='stretch')
+#     except:
+#         st.info("Flowchart not available")
+with col3:
+=======
 with col2:
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     col1, col2 = st.columns(2)
     try:
         with col1:
@@ -161,6 +181,12 @@ with col3:
 with col4:
     st.metric("Detections Curated", curated_count)
 
+<<<<<<< HEAD
+# st.markdown("---")
+
+
+=======
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
 st.markdown("---")
 # Quick start guide
 st.markdown("### 🚀 Quick Start Guide")
@@ -169,8 +195,13 @@ with col1:
     st.markdown("""
     **Step 1-3: Data & Detection**
     - Upload videos
+<<<<<<< HEAD
+    - Run the inference  
+    - Review detections
+=======
     - Run YOLO inference  
     - Curate detections
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     """)
 with col2:
     st.markdown("""

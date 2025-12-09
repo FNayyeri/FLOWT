@@ -1,0 +1,111 @@
+# Flowt Pipeline
+
+## Overview
+
+Plastic and other floating debris pose serious environmental threats, harming aquatic ecosystems, marine life, and even human health through the food chain. Automated detection powered by computer vision and AI technologies allows for real-time identification, quantification, and tracking of waste, providing accurate data for cleanup efforts, policymaking, and prevention strategies. This not only reduces labor costs and human error but also accelerates response times, helping authorities and environmental organisations protect water quality and biodiversity more effectively.
+
+The **Flowt** pipeline is a comprehensive end-to-end computer vision framework for **Floating Litter Observation & Waste Tracking**. It provides robust tools for ingesting videos, running object detection models, reviewing and saving detection results, tracking unique litter movements, and conducting in-depth analysis through AI services. Additionally, it supports iterative fine-tuning of detection models to improve performance over time and can generate annotated videos for quality evaluation.
+
+The pipeline is designed with scalability, ease of use, and maintainability in mind. It integrates multiple components with a consistent UI/UX and persistent configuration to streamline workflows for environmental monitoring and research.
+
+The pipeline is divided into two main workflows, each supporting different objectives:
+
+#### 1. Waste Tracking Workflow
+
+This workflow, highlighted by green color in pipeline workflow diagram, focuses on applying the model for monitoring and analysis of floating litter. The sequential steps include:
+
+Data Ingestion ──> Scanning ──> Review the Detections ──> Tracking ──> Analysis ──> Video Generation
+- Provides detection results review and correction.
+- Tracks unique litter objects across frames.
+- Performs in-depth analysis and generates annotated videos for reporting.
+
+#### 2. Model Improvement Workflow
+
+This workflow, highlighted by red color in pipeline workflow diagram, focuses on improving the detection model’s performance through iterative training. The sequential steps include:
+
+Data Ingestion ──> Scanning ──> Review the Detections ──> Model Refinement
+- Used to create high-quality training datasets.
+- Enables version-controlled fine-tuning of models.
+- Automatically integrates improved models back into the inference workflow.
+
+## Overview
+---
+
+### Technical Architecture ###
+**Navigation System** is implemented for seamless transition between workflow stages in order with following featurs.
+
+- State Persistence: Cross-page model and video selection
+- Consistent UI: Uniform video display with .mp4 extensions while handling internal file mappings
+- Page Flow: Intuitive Previous/Next navigation buttons across all pages
+
+**Configuration Management**
+- YAML-Based Config: Centralised configuration in `config/config.yaml`
+- Persistent Settings: User preferences automatically saved and restored
+- Modular Sections: Separate configuration sections for video generation, tracking, and fine-tuning
+
+---
+
+## Pipeline Structure
+```
+FLOWT/
+├── flowt/
+│   ├── pages/                  # Streamlit UI Pages
+│   │   ├── 1_Data_Ingestion.py
+│   │   ├── 2_Scanning.py
+│   │   ├── 3_Review.py
+│   │   ├── 4_Tracking.py
+│   │   ├── 5_Video_Generation.py
+│   │   ├── 6_Trash_Analysis.py
+│   │   ├── 7_AI_Insight.py
+│   │   ├── 8_Model_Refining.py
+│   │   ├── 9_Edge_Deployment.py
+│   │   └── Documentation.py
+│   ├── data/
+│   ├── Flowt pipeline.py        # Main entry point
+│   ├── src/
+│   ├── config/
+│   │   ├── config.yaml
+│   │   └──floating_litter_classes.json
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── run.sh
+├── models/                       # Model storage directory - Base and active models
+└── models_ft/                    # Fine-tuned model versions
+```
+
+---
+
+## Best Practices
+- **Bulk curation operations** are scoped to the current page to avoid accidental dataset-wide changes.
+- Always check overwrite warnings before running inference again.
+- Keep `requirements.txt` updated when adding dependencies.
+- Use unique keys for all Streamlit interactive elements to avoid conflicts.
+
+---
+
+## Tech Stack
+- **Frontend**: Streamlit
+- **Backend**: Python
+- **AI Services**: OpenAI
+- **Containerisation**: Docker
+- **Data Storage**: Local filesystem with JSON/CSV
+
+---
+
+## Future Improvements
+- Integration with cloud storage (AWS S3, Azure Data Lake).
+- Real-time inference via edge devices.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Contact
+For inquiries or collaboration:
+- **Author**: Fereshteh Nayyeri
+- **Email**: [fereshteh.nayyeri@gmail.com]
+- **Organisation**: CSIRO Data61
+

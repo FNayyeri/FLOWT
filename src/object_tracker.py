@@ -79,6 +79,31 @@ class ObjectTracker:
                 best_track_id = None
                 best_score = 0
                 
+<<<<<<< HEAD
+                # Find best matching track using IoU and template matching
+                for track_id, track_info in self.tracks.items():
+                    if track_info['class'] == class_name:
+                        # Calculate IoU score
+                        iou_score = self.calculate_iou(bbox, track_info['last_bbox'])
+                        
+                        # Template matching
+                        template_score = self.match_template(frame, bbox, track_info['template'])
+                        
+                        # Use IoU OR template matching when not timelapse, only template for timelapse
+                        if self.iou_threshold > 0:
+                            # Non-timelapse: use IoU OR template matching (either can match)
+                            iou_match = iou_score > self.iou_threshold
+                            template_match = template_score > self.template_threshold
+                            threshold_met = iou_match or template_match
+                            combined_score = max(iou_score, template_score)
+                        else:
+                            # Timelapse: only template matching
+                            combined_score = template_score
+                            threshold_met = template_score > self.template_threshold
+                        
+                        if combined_score > best_score and threshold_met:
+                            best_score = combined_score
+=======
                 # Find best matching track using only template matching
                 for track_id, track_info in self.tracks.items():
                     if track_info['class'] == class_name:
@@ -87,6 +112,7 @@ class ObjectTracker:
                         
                         if template_score > best_score and template_score > self.template_threshold:
                             best_score = template_score
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
                             best_track_id = track_id
                 
                 # Create new track or update existing

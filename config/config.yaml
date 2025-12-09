@@ -68,9 +68,22 @@ detection_classes:
   - T_wood/timber
   - Other
 fine_tuning:
+<<<<<<< HEAD
+  augment: true
+  batch_size: 16
+  conf_threshold: 0.25
+  device: auto
+  epochs: 2
+  frozen_layers: 9
+  include_test: false
+  test_ratio: 0.1
+  train_ratio: 0.8
+  val_ratio: 0.1
+=======
   batch_size: 16
   epochs: 20
   frozen_layers: 9
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
 inference:
   batch_size: 1
   device: auto
@@ -78,18 +91,30 @@ inference:
 models:
   confidence_threshold: 0.5
   default_model: yolov8n.pt
+<<<<<<< HEAD
+  last_used_model: ''
+=======
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
   model_path: models
   supported_formats:
   - .pt
   - .onnx
 styling:
   bbox:
+<<<<<<< HEAD
+    font_scale: 2.0
+=======
     font_scale: 0.6
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     text_color:
     - 255
     - 255
     - 255
+<<<<<<< HEAD
+    text_thickness: 2
+=======
     text_thickness: 1
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     thickness: 4
 tags:
   condition:
@@ -105,7 +130,11 @@ tags:
   - medium
   - large
 tracking:
+<<<<<<< HEAD
+  timelapse_video: false
+=======
   timelapse_video: true
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
 training:
   default_batch_size: 16
   default_epochs: 100
@@ -113,5 +142,10 @@ training:
   early_stopping_patience: 30
 video_generation:
   bbox_color: '#0006ff'
+<<<<<<< HEAD
+  bbox_thickness: 3
+  font_size: 1.0
+=======
   bbox_thickness: 4
+>>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
   text_color: '#ffffff'
