@@ -1,9 +1,5 @@
 import cv2
-<<<<<<< HEAD
 import yaml
-=======
-import json
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
 from pathlib import Path
 from .bbox_drawer import BBoxDrawer
 
@@ -27,7 +23,6 @@ class FrameUpdater:
         
         # Save updated frame
         cv2.imwrite(str(frame_path), updated_frame)
-<<<<<<< HEAD
         return True
     
     def update_frame_with_detection_id(self, frame_path, detection, curated_class, detection_id):
@@ -70,6 +65,4 @@ class FrameUpdater:
         
         # Save updated frame
         
-=======
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
         return True

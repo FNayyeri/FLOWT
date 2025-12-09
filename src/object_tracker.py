@@ -79,7 +79,6 @@ class ObjectTracker:
                 best_track_id = None
                 best_score = 0
                 
-<<<<<<< HEAD
                 # Find best matching track using IoU and template matching
                 for track_id, track_info in self.tracks.items():
                     if track_info['class'] == class_name:
@@ -103,16 +102,6 @@ class ObjectTracker:
                         
                         if combined_score > best_score and threshold_met:
                             best_score = combined_score
-=======
-                # Find best matching track using only template matching
-                for track_id, track_info in self.tracks.items():
-                    if track_info['class'] == class_name:
-                        # Template matching only
-                        template_score = self.match_template(frame, bbox, track_info['template'])
-                        
-                        if template_score > best_score and template_score > self.template_threshold:
-                            best_score = template_score
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
                             best_track_id = track_id
                 
                 # Create new track or update existing

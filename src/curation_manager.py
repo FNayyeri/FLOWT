@@ -46,31 +46,6 @@ class CurationManager:
         if auto_export and video_name:
             self.export_curated_data(video_name)
     
-<<<<<<< HEAD
-=======
-    def bulk_mark_true_positive(self, start_idx=None, end_idx=None):
-        """Mark detections as true positive"""
-        if start_idx is None:
-            start_idx = 0
-        if end_idx is None:
-            end_idx = len(self.current_detections)
-        
-        for i in range(start_idx, min(end_idx, len(self.current_detections))):
-            self.current_detections[i]['is_true_positive'] = True
-            self.curations[i] = {'is_true_positive': True}
-    
-    def bulk_mark_false_positive(self, start_idx=None, end_idx=None):
-        """Mark detections as false positive"""
-        if start_idx is None:
-            start_idx = 0
-        if end_idx is None:
-            end_idx = len(self.current_detections)
-        
-        for i in range(start_idx, min(end_idx, len(self.current_detections))):
-            self.current_detections[i]['is_true_positive'] = False
-            self.curations[i] = {'is_true_positive': False}
-    
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     def export_curated_data(self, video_name=None):
         """Export curated detections to file"""
         # Apply all curations
@@ -88,7 +63,6 @@ class CurationManager:
             json.dump(self.current_detections, f, indent=2)
         
         return curated_file
-<<<<<<< HEAD
     def add_tags(self, detection_idx, tags, curated_file):
         """Add tags to a specific detection"""
         if detection_idx < len(self.current_detections):
@@ -117,9 +91,6 @@ class CurationManager:
         return True
 
 
-=======
-    
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
     def get_curation_stats(self):
         """Get statistics about current curation session"""
         total = len(self.current_detections)
@@ -142,7 +113,6 @@ class CurationManager:
             if curation.get('is_true_positive') and not curation.get('corrected_class'):
                 issues.append(f"Detection {idx}: True positive without corrected class")
         
-<<<<<<< HEAD
         return issues
     
 def bulk_mark_tp(curations, curated_file, all_detections, start_idx, end_idx):
@@ -160,6 +130,3 @@ def bulk_mark_fp(curations, curated_file, all_detections, start_idx, end_idx):
             curations[i]['is_true_positive'] = False
     with open(curated_file, 'w') as f:
         json.dump(all_detections, f, indent=2)
-=======
-        return issues
->>>>>>> 72b8e1e1f0a7e01f097607743d6e659c209801f9
