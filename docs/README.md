@@ -1,5 +1,4 @@
 # Flowt Pipeline
----
 ## Overview
 
 Plastic and other floating debris pose serious environmental threats, harming aquatic ecosystems, marine life, and even human health through the food chain. Automated detection powered by computer vision and AI technologies allows for real-time identification, quantification, and tracking of waste, providing accurate data for cleanup efforts, policymaking, and prevention strategies. This not only reduces labor costs and human error but also accelerates response times, helping authorities and environmental organisations protect water quality and biodiversity more effectively.
@@ -28,7 +27,6 @@ Data Ingestion ──> Scanning ──> Review the Detections ──> Model Refi
 - Enables version-controlled fine-tuning of models.
 - Automatically integrates improved models back into the inference workflow.
 
----
 ## Technical Architecture ###
 **Navigation System** is implemented for seamless transition between workflow stages in order with following featurs.
 
@@ -41,7 +39,7 @@ Data Ingestion ──> Scanning ──> Review the Detections ──> Model Refi
 - Persistent Settings: User preferences automatically saved and restored
 - Modular Sections: Separate configuration sections for video generation, tracking, and fine-tuning
 
----
+
 ## Pipeline Structure
 ```
 FLOWT/
@@ -74,8 +72,7 @@ FLOWT/
 └── models_ft/                # Refined model versions
 ```
 
----
-## Setup
+### Setup
 ```bash
 # Clone the repository
 git clone https://github.com/FNayyeri/FLOWT.git
@@ -84,7 +81,7 @@ cd FLOWT
 # Run the application
 ./flowt.sh
 ```
----
+
 ## Tech Stack
 - **Frontend**: Streamlit
 - **Backend**: Python
@@ -92,16 +89,13 @@ cd FLOWT
 - **Containerisation**: Docker
 - **Data Storage**: Local filesystem with JSON/CSV
 
----
 ## Future Improvements
 - Real-time inference via edge devices.
 - Integration with cloud storage (AWS S3, Azure Data Lake).
 
----
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
----
 ## Contact
 For inquiries or collaboration:
 - **Author**: Fereshteh Nayyeri
