@@ -48,29 +48,33 @@ Data Ingestion ──> Scanning ──> Review the Detections ──> Model Refi
 ## Pipeline Structure
 ```
 FLOWT/
-├── flowt/
-│   ├── pages/                  # Streamlit UI Pages
-│   │   ├── 1_Data_Ingestion.py
-│   │   ├── 2_Scanning.py
-│   │   ├── 3_Review.py
-│   │   ├── 4_Tracking.py
-│   │   ├── 5_Video_Generation.py
-│   │   ├── 6_Trash_Analysis.py
-│   │   ├── 7_AI_Insight.py
-│   │   ├── 8_Model_Refining.py
-│   │   ├── 9_Edge_Deployment.py
-│   │   └── Documentation.py
-│   ├── data/
-│   ├── Flowt pipeline.py        # Main entry point
-│   ├── src/
-│   ├── config/
-│   │   ├── config.yaml
-│   │   └──floating_litter_classes.json
-│   ├── requirements.txt
-│   ├── Dockerfile
-│   └── run.sh
-├── models/                       # Model storage directory - Base and active models
-└── models_ft/                    # Fine-tuned model versions
+├── pages/                  # Streamlit UI Pages
+│   ├── 1_Data_Ingestion.py
+│   ├── 2_Scanning.py
+│   ├── 3_Review.py
+│   ├── 4_Tracking.py
+│   ├── 5_Video_Generation.py
+│   ├── 6_Trash_Analysis.py
+│   ├── 7_AI_Insight.py
+│   ├── 8_Model_Refining.py
+│   ├── 9_Edge_Deployment.py
+│   └── Documentation.py
+├── Flowt pipeline.py        
+├── src/
+├── config/
+│   ├── config.yaml
+│   └── floating_litter_classes.json
+├── docs/  
+│   ├── README.md 
+│   ├── Features.md
+│   ├── installation.md
+│   ├── Model_Cards.md
+│   └── LICENCE
+├── requirements.txt
+├── Dockerfile
+├── flowt.sh                  # Main entry point
+├── models/                   # Model storage directory - Base and active models
+└── models_ft/                # Refined model versions
 ```
 
 ---
@@ -93,8 +97,8 @@ FLOWT/
 ---
 
 ## Future Improvements
-- Integration with cloud storage (AWS S3, Azure Data Lake).
 - Real-time inference via edge devices.
+- Integration with cloud storage (AWS S3, Azure Data Lake).
 
 ---
 

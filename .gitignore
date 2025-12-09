@@ -1,3 +1,6 @@
 venv/
+data/
+models_ft/
+runs/
 .DS_Store
 .gitkeep
