@@ -74,14 +74,20 @@ FLOWT/
 ```
 
 ## Setup
-```bash
-# Clone the repository
-git clone https://github.com/FNayyeri/FLOWT.git
-cd FLOWT
 
-# Run the application
-./flowt.sh
-```
+### Mac/Linux
+1. Install Homebrew if missing: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+2. Install pyenv & pyenv-virtualenv if missing: `brew install pyenv pyenv-virtualenv`
+3. Install Python & venv if missing: `pyenv install 3.11.8 && pyenv virtualenv 3.11.8 flowt-venv`
+4. Run: `./flowt.sh`
+
+### Windows
+1. Install Homebrew if missing: Download from [python.org](https://www.python.org/downloads/)
+2. Install pyenv & pyenv-virtualenv if missing: `pip install virtualenv`
+3. Install Python & venv if missing: `python -m venv flowt-venv && flowt-venv\Scripts\activate`
+4. Run: `./flowt_win.sh`
+
+Access the application at `http://localhost:8001`
 
 ## Tech Stack
 - **Frontend**: Streamlit

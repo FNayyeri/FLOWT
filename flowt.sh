@@ -1,31 +1,21 @@
 #!/bin/bash
+echo "🌊 Starting FLOWT Pipeline"
 
-# FLOWT - Floating Litter Observation & Waste Tracking
-# Quick start script
+# ------------------------
+# Install dependencies
+# ------------------------
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install --no-cache-dir -r requirements.txt
 
-echo "🌊 Starting FLOWT - Floating Litter Observation & Waste Tracking Pipeline"
+# ------------------------
+# Setup directories & models
+# ------------------------
+mkdir -p data/{videos,results,curated,tracking,analysis,output} models
+[ ! -d "models/.git" ] && git clone --depth 1 https://huggingface.co/FNayyeri/flowt-pretrained-models models
 
-# Check if virtual environment exists
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-fi
-
-# Activate virtual environment
-source venv/bin/activate
-
-# Install requirements
-pip install --upgrade pip
-echo "Installing requirements..."
-pip install --no-cache-dir -r requirements.txt
-
-# Create necessary directories
-echo "Setting up directories..."
-mkdir -p data/{videos,results,curated,tracking,analysis,output}
-mkdir -p models
-
-# Start Streamlit app
-echo "Starting FLOWT application..."
+# ------------------------
+# Start Streamlit
+# ------------------------
+echo "Starting FLOWT app..."
 streamlit run "Flowt pipeline.py" --server.port=8001
-
-echo "✅ FLOWT is running at http://localhost:8001"
+echo "✅ FLOWT running at http://localhost:8001"
