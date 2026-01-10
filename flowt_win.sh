@@ -17,9 +17,14 @@ if not exist "data\tracking" mkdir data\tracking
 if not exist "data\analysis" mkdir data\analysis
 if not exist "data\output" mkdir data\output
 if not exist "models" mkdir models
+if not exist "Sample_Data" mkdir Sample_Data
 
-if not exist "models\.git" (
-    git clone --depth 1 https://huggingface.co/FNayyeri/flowt-pretrained-models models
+if not exist "models\model1.pt" (
+    echo Downloading models from Hugging Face...
+    curl -L -o models\model1.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model1.pt
+    curl -L -o models\model2.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model2.pt
+    curl -L -o models\model3.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model3.pt
+    curl -L -o models\model4.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model4.pt
 )
 
 REM ------------------------
