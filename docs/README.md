@@ -68,9 +68,9 @@ FLOWT/
 │   └── LICENCE
 ├── requirements.txt
 ├── Dockerfile
-├── flowt.sh                  # Main entry point
-├── models/                   # Model storage directory - Base and active models
-└── models_ft/                # Refined model versions
+├── flowt.sh                  # Mac/Linux entry point
+├── flowt_win.sh              # Windows entry point
+└── models/                   # Model storage directory - Base and active models
 ```
 
 ## Setup
@@ -124,11 +124,21 @@ Access the application at `http://localhost:8001`
 - Integration with cloud storage (AWS S3, Azure Data Lake).
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+The original code and documentation developed as part of this pipeline are released under the `Creative Commons Attribution 4.0 International (CC BY 4.0)` license. This license permits users to share, adapt, and reuse the work,
+including for commercial purposes, provided that appropriate attribution is given to the original author.
+
+## Paper
+[CSIRO Publication](https://publications.csiro.au/publications/publication/PIcsiro:EP2026-0022/SQnayyeri/RP1/RS25/RORECENT/STsearch-by-keyword/LISEA/RI1/RT4)
+
+[Detailed Documentation (PDF)](docs/Flowt%20Pipeline%20-%20Floating%20Litter%20Observation%20&%20Waste%20Tracking.pdf)
+
+## Youtube Demo
+[FLOWT in Action: AI-Powered Floating Litter Observation & Waste Tracking](https://www.youtube.com/watch?v=Pkm2afZjb54)
+
 
 ## Contact
 For inquiries or collaboration:
 - **Author**: Fereshteh Nayyeri
 - **Email**: [fereshteh.nayyeri@gmail.com]
-- **Organisation**: CSIRO Data61
+- **Website**: www.fereshteh.nayyeri.com
 
