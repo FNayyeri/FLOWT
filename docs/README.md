@@ -136,12 +136,12 @@ The original code and documentation developed as part of this pipeline are relea
 including for commercial purposes, provided that appropriate attribution is given to the original author.
 
 ## Paper
-[CSIRO Publication](https://publications.csiro.au/publications/publication/PIcsiro:EP2026-0022/SQnayyeri/RP1/RS25/RORECENT/STsearch-by-keyword/LISEA/RI1/RT4)
+<a href="https://publications.csiro.au/publications/publication/PIcsiro:EP2026-0022/SQnayyeri/RP1/RS25/RORECENT/STsearch-by-keyword/LISEA/RI1/RT4" target="_blank">CSIRO Publication</a>
 
-[Detailed Documentation (PDF)](FlowtPipeline-FloatingLitterObservation&WasteTracking.pdf)
+<a href="FlowtPipeline-FloatingLitterObservation&WasteTracking.pdf" target="_blank">Detailed Documentation (PDF)</a>
 
-## Youtube Demo
-[FLOWT in Action: AI-Powered Floating Litter Observation & Waste Tracking](https://www.youtube.com/watch?v=Pkm2afZjb54)
+## YouTube Demo
+<a href="https://www.youtube.com/watch?v=Pkm2afZjb54" target="_blank">FLOWT in Action: AI-Powered Floating Litter Observation & Waste Tracking</a>
 
 
 ## Contact
