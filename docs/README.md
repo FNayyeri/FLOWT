@@ -112,6 +112,14 @@ python -m venv flowt-venv && flowt-venv\Scripts\activate
 
 Access the application at `http://localhost:8001`
 
+## Sample Data
+
+Sample video data is not stored in this repository due to size constraints,
+but will soon be available for download from the 
+[CSIRO data repository](https://data.csiro.au/collection/csiro:72792) (coming soon).
+
+After downloading, extract the files into: `Sample_Data` folder.
+
 ## Tech Stack
 - **Frontend**: Streamlit
 - **Backend**: Python

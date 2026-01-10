@@ -15,7 +15,7 @@ python -m pip install --no-cache-dir -r requirements.txt
 # ------------------------
 # Setup directories & models
 # ------------------------
-mkdir -p data/{videos,results,curated,tracking,analysis,output} models
+mkdir -p data/{videos,results,curated,tracking,analysis,output} models Sample_Data
 if [ ! -f "models/model1.pt" ]; then
     echo "Downloading models from Hugging Face..."
     curl -L -o models/model1.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model1.pt
