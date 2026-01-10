@@ -140,5 +140,4 @@ including for commercial purposes, provided that appropriate attribution is give
 For inquiries or collaboration:
 - **Author**: Fereshteh Nayyeri
 - **Email**: [fereshteh.nayyeri@gmail.com]
-- **Website**: www.fereshtehnayyeri.com
 
