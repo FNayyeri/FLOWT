@@ -16,7 +16,13 @@ python -m pip install --no-cache-dir -r requirements.txt
 # Setup directories & models
 # ------------------------
 mkdir -p data/{videos,results,curated,tracking,analysis,output} models
-[ ! -d "models/.git" ] && git clone --depth 1 https://huggingface.co/FNayyeri/flowt-pretrained-models models
+if [ ! -f "models/model1.pt" ]; then
+    echo "Downloading models from Hugging Face..."
+    curl -L -o models/model1.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model1.pt
+    curl -L -o models/model2.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model2.pt
+    curl -L -o models/model3.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model3.pt
+    curl -L -o models/model4.pt https://huggingface.co/FNayyeri/flowt-pretrained-models/resolve/main/model4.pt
+fi
 
 # ------------------------
 # Start Streamlit
