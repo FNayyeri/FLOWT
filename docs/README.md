@@ -136,7 +136,7 @@ including for commercial purposes, provided that appropriate attribution is give
 ## Paper
 [CSIRO Publication](https://publications.csiro.au/publications/publication/PIcsiro:EP2026-0022/SQnayyeri/RP1/RS25/RORECENT/STsearch-by-keyword/LISEA/RI1/RT4)
 
-[Detailed Documentation (PDF)](FlowtPipeline-FloatingLitterObservation&WasteTracking.pdf)
+[Detailed Documentation (PDF)](FlowtPipeline-FloatingLitterObservationWasteTracking.pdf)
 
 ## Youtube Demo
 [FLOWT in Action: AI-Powered Floating Litter Observation & Waste Tracking](https://www.youtube.com/watch?v=Pkm2afZjb54)
