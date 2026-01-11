@@ -135,6 +135,7 @@ including for commercial purposes, provided that appropriate attribution is give
 
 ## Paper
 [CSIRO Publication](https://publications.csiro.au/publications/publication/PIcsiro:EP2026-0022/SQnayyeri/RP1/RS25/RORECENT/STsearch-by-keyword/LISEA/RI1/RT4)
+
 [Detailed Documentation (PDF)](FlowtPipeline-FloatingLitterObservation&WasteTracking.pdf)
 
 ## Youtube Demo
